@@ -8,7 +8,7 @@ thirty bees is an open-source e-commerce solution, forked from PrestaShop. We'd 
  
  Contributing to this project via Git can be done as follows:
  - Fork this project to your own GitHub account
- - Recursively clone this project to your local machine (use e.g. `git clone git@github.com:username/ThirtyBees.git --recursive`)
+ - Recursively clone this project to your local machine (use e.g. `git clone git@github.com:username/thirtybees.git --recursive`)
  - Optionally install the dependencies of this project to test it on your local machine (`composer install` in the root directory)
  - Create your own local branch (`git checkout -b mybranch`)
  - Make your changes
@@ -21,7 +21,7 @@ thirty bees is an open-source e-commerce solution, forked from PrestaShop. We'd 
 ## Coding standards
  We like to aim for a very high quality open source e-commerce platform. This means that we need to implement high quality standards, guidelines and coding styles that should be used by everyone participating in the project, at all times. Not abiding by the project's coding standards may be a reason to decline your contribution, so be sure to read this section in order to maximize the chance of your changes to land in thirty bees' codebase.  
  The majority of thirty bees is written in PHP, but in our codebase you will also find JavaScript, HTML, CSS, Smarty templates, SQL, XML and JSON. For these languages we use the following code standards:
- - PHP: [Symfony Standards](http://symfony.com/doc/current/contributing/code/standards.html) PLUS [shorthand aligned arrays](https://github.com/thirtybees/ThirtyBees/blob/de63e54d405c6e3c4660a846684937868838732f/classes/Address.php#L122-L149) MINUS [yoda conditions](https://en.wikipedia.org/wiki/Yoda_conditions)
+ - PHP: [Symfony Standards](http://symfony.com/doc/current/contributing/code/standards.html) PLUS [shorthand aligned arrays](https://github.com/thirtybees/thirtybees/blob/de63e54d405c6e3c4660a846684937868838732f/classes/Address.php#L122-L149) MINUS [yoda conditions](https://en.wikipedia.org/wiki/Yoda_conditions)
  - JavaScript: [Airbnb JavaScript style](https://github.com/airbnb/javascript)
  - HTML, XML, CSS and Smarty templates: [Mark Otto's coding standards](http://codeguide.co/)
  - SQL: See [SQL Guidelines](#sql-guidelines) below
