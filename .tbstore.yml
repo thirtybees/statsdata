@@ -1,0 +1,11 @@
+module_name: Data mining for statistics
+compatible_versions: 1.0.0+
+author: thirty bees
+category: back office
+tags:
+  - statistics
+description_short: This module must be enabled if you want to use statistics.
+description: description.md
+images:
+  - image-1.png
+license: AFL 3.0
