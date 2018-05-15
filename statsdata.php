@@ -41,7 +41,7 @@ class StatsData extends Module
         $this->bootstrap = true;
         parent::__construct();
 
-        $this->displayName = $this->l('Data mining for statistics');
+        $this->displayName = $this->l('Data Mining for Statistics');
         $this->description = $this->l('This module must be enabled if you want to use statistics.');
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
     }
