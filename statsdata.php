@@ -104,9 +104,9 @@ class StatsData extends Module
 
             if (Configuration::get('PS_STATSDATA_PLUGINS')) {
                 if (_PS_VERSION_ >= 1.7) {
-                    $this->context->controller->registerJavascript('modules-plugindetect', 'modules/'.$this->name.'/js/plugindetect.js', array('position' => 'bottom', 'priority' => 150));
+                    $this->context->controller->registerJavascript('modules-plugindetect', 'modules/'.$this->name.'/js/plugindetect.min.js', array('position' => 'bottom', 'priority' => 150));
                 } else {
-                    $this->context->controller->addJS($this->_path.'js/plugindetect.js');
+                    $this->context->controller->addJS($this->_path.'js/plugindetect.min.js');
                 }
 
                 $token = sha1($params['cookie']->id_guest._COOKIE_KEY_);
