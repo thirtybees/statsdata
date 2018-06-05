@@ -42,6 +42,7 @@ class StatsData extends Module
 
         $this->displayName = $this->l('Data Mining for Statistics');
         $this->description = $this->l('This module must be enabled if you want to use statistics.');
+        $this->tb_versions_compliancy = '> 1.0.0';
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
     }
 
