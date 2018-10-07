@@ -4,6 +4,7 @@ author: thirty bees
 category: back office
 tags:
   - statistics
+  - statsdata
 description_short: This module must be enabled if you want to use statistics.
 description: description.md
 images:
