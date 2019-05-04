@@ -44,7 +44,7 @@ class StatsData extends Module
         $this->description = $this->l('This module must be enabled if you want to use statistics.');
         $this->tb_versions_compliancy = '> 1.0.0';
         $this->tb_min_version = '1.0.0';
-        $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
+        $this->ps_versions_compliancy = array('min' => '1.6', 'max' => '1.6.1.99');
     }
 
     public function install()
