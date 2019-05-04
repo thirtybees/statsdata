@@ -49,13 +49,8 @@ class StatsData extends Module
 
     public function install()
     {
-        if (_PS_VERSION_ >= 1.7) {
-            $hookFooter = 'displayBeforeBodyClosingTag';
-        } else {
-            $hookFooter = 'footer';
-        }
         return (parent::install()
-            && $this->registerHook($hookFooter)
+            && $this->registerHook('footer')
             && $this->registerHook('authentication')
             && $this->registerHook('createAccount'));
     }
@@ -77,26 +72,10 @@ class StatsData extends Module
 
     public function hookFooter($params)
     {
-        if (_PS_VERSION_ < 1.7) {
-            $script_content_plugins = $this->getScriptPlugins($params);
-            $script_content_pages_views = $this->getScriptCustomerPagesViews($params);
+        $script_content_plugins = $this->getScriptPlugins($params);
+        $script_content_pages_views = $this->getScriptCustomerPagesViews($params);
 
-            return $script_content_plugins . $script_content_pages_views;
-        }
-
-        return false;
-    }
-
-    public function hookDisplayBeforeBodyClosingTag($params)
-    {
-        if (_PS_VERSION_ >= 1.7) {
-            $script_content_plugins = $this->getScriptPlugins($params);
-            $script_content_pages_views = $this->getScriptCustomerPagesViews($params);
-
-            return $script_content_plugins . $script_content_pages_views;
-        }
-
-        return false;
+        return $script_content_plugins . $script_content_pages_views;
     }
 
     private function getScriptPlugins($params)
@@ -105,11 +84,7 @@ class StatsData extends Module
             Guest::setNewGuest($params['cookie']);
 
             if (Configuration::get('PS_STATSDATA_PLUGINS')) {
-                if (_PS_VERSION_ >= 1.7) {
-                    $this->context->controller->registerJavascript('modules-plugindetect', 'modules/'.$this->name.'/js/plugindetect.min.js', array('position' => 'bottom', 'priority' => 150));
-                } else {
-                    $this->context->controller->addJS($this->_path.'js/plugindetect.min.js');
-                }
+                $this->context->controller->addJS($this->_path.'js/plugindetect.min.js');
 
                 $token = sha1($params['cookie']->id_guest._COOKIE_KEY_);
                 return '<script type="text/javascript">
