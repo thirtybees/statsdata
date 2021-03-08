@@ -155,16 +155,23 @@ class StatsData extends Module
         return $this->hookAuthentication($params);
     }
 
+    /**
+     * @param $params
+     * @throws Adapter_Exception
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     */
     public function hookAuthentication($params)
     {
         // Update or merge the guest with the customer id (login and account creation)
         $guest = new Guest($params['cookie']->id_guest);
+
         $result = Db::getInstance()->getRow('
 		SELECT `id_guest`
 		FROM `'._DB_PREFIX_.'guest`
 		WHERE `id_customer` = '.(int)$params['cookie']->id_customer);
 
-        if ((int)$result['id_guest']) {
+        if (is_array($result) && (int)$result['id_guest']) {
             // The new guest is merged with the old one when it's connecting to an account
             $guest->mergeWithCustomer($result['id_guest'], $params['cookie']->id_customer);
             $params['cookie']->id_guest = $guest->id;
