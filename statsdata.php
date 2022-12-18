@@ -197,7 +197,7 @@ class StatsData extends Module
      */
     public function hookCreateAccount($params)
     {
-        return $this->hookAuthentication($params);
+        $this->hookAuthentication($params);
     }
 
     /**
