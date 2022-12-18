@@ -305,6 +305,9 @@ class StatsData extends Module
             ),
         );
 
+        /** @var AdminController $controller */
+        $controller = $this->context->controller;
+
         $helper = new HelperForm();
         $helper->show_toolbar = false;
         $helper->table = $this->table;
@@ -318,7 +321,7 @@ class StatsData extends Module
         $helper->token = Tools::getAdminTokenLite('AdminModules');
         $helper->tpl_vars = array(
             'fields_value' => $this->getConfigFieldsValues(),
-            'languages' => $this->context->controller->getLanguages(),
+            'languages' => $controller->getLanguages(),
             'id_language' => $this->context->language->id
         );
 
