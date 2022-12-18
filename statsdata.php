@@ -29,6 +29,10 @@ if (!defined('_TB_VERSION_')) {
 
 class StatsData extends Module
 {
+    /**
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     */
     public function __construct()
     {
         $this->name = 'statsdata';
@@ -47,6 +51,12 @@ class StatsData extends Module
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => '1.6.1.99');
     }
 
+    /**
+     * @return bool
+     *
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     */
     public function install()
     {
         return (parent::install()
@@ -55,6 +65,13 @@ class StatsData extends Module
             && $this->registerHook('createAccount'));
     }
 
+    /**
+     * @return string
+     *
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     * @throws SmartyException
+     */
     public function getContent()
     {
         $html = '';
@@ -70,6 +87,14 @@ class StatsData extends Module
         return $html;
     }
 
+    /**
+     * @param array $params
+     *
+     * @return string
+     *
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     */
     public function hookFooter($params)
     {
         $script_content_plugins = $this->getScriptPlugins($params);
@@ -78,6 +103,12 @@ class StatsData extends Module
         return $script_content_plugins . $script_content_pages_views;
     }
 
+    /**
+     * @param array $params
+     *
+     * @return string
+     * @throws PrestaShopException
+     */
     private function getScriptPlugins($params)
     {
         if (!isset($params['cookie']->id_guest)) {
@@ -112,6 +143,14 @@ class StatsData extends Module
         return '';
     }
 
+    /**
+     * @param array $params
+     *
+     * @return string
+     *
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     */
     private function getScriptCustomerPagesViews($params)
     {
         // Record the guest path then increment the visit counter of the page
@@ -150,14 +189,20 @@ class StatsData extends Module
         return '';
     }
 
+    /**
+     * @param array $params
+     *
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     */
     public function hookCreateAccount($params)
     {
         return $this->hookAuthentication($params);
     }
 
     /**
-     * @param $params
-     * @throws Adapter_Exception
+     * @param array $params
+     *
      * @throws PrestaShopDatabaseException
      * @throws PrestaShopException
      */
@@ -183,6 +228,13 @@ class StatsData extends Module
         }
     }
 
+    /**
+     * @return string
+     *
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     * @throws SmartyException
+     */
     public function renderForm()
     {
         $fields_form = array(
@@ -274,6 +326,11 @@ class StatsData extends Module
         return $helper->generateForm(array($fields_form));
     }
 
+    /**
+     * @return array
+     *
+     * @throws PrestaShopException
+     */
     public function getConfigFieldsValues()
     {
         return array(
