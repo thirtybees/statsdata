@@ -37,7 +37,7 @@ class StatsData extends Module
     {
         $this->name = 'statsdata';
         $this->tab = 'analytics_stats';
-        $this->version = '2.0.3';
+        $this->version = '2.0.4';
         $this->author = 'thirty bees';
         $this->need_instance = 0;
 
