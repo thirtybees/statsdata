@@ -111,13 +111,15 @@ class StatsData extends Module
      */
     private function getScriptPlugins($params)
     {
-        if (!isset($params['cookie']->id_guest)) {
-            Guest::setNewGuest($params['cookie']);
+        $cookie = $params['cookie'] ?? null;
+        if (($cookie instanceof Cookie) && !isset($cookie->id_guest)) {
+            Guest::setNewGuest($cookie);
+            $guestId = (int)$cookie->id_guest;
 
-            if (Configuration::get('PS_STATSDATA_PLUGINS')) {
+            if ($guestId && Configuration::get('PS_STATSDATA_PLUGINS')) {
                 $this->context->controller->addJS($this->_path.'js/plugindetect.min.js');
 
-                $token = sha1($params['cookie']->id_guest._COOKIE_KEY_);
+                $token = sha1($guestId . _COOKIE_KEY_);
                 return '<script type="text/javascript">
 					$(document).ready(function() {
 						plugins = new Object;
@@ -132,7 +134,7 @@ class StatsData extends Module
 						for (var i in plugins)
 							navinfo[i] = plugins[i];
 						navinfo.type = "navinfo";
-						navinfo.id_guest = "'.(int)$params['cookie']->id_guest.'";
+						navinfo.id_guest = "'.$guestId.'";
 						navinfo.token = "'.$token.'";
 						$.post("'.Context::getContext()->link->getPageLink('statistics', (bool)(Tools::getShopProtocol() == 'https://')).'", navinfo);
 					});
