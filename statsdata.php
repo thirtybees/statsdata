@@ -224,7 +224,7 @@ class StatsData extends Module
             $params['cookie']->id_guest = $guest->id;
         } else {
             // The guest is duplicated if it has multiple customer accounts
-            $method = ($guest->id_customer) ? 'add' : 'update';
+            $method = ($guest->id_customer || !Validate::isLoadedObject($guest)) ? 'add' : 'update';
             $guest->id_customer = $params['cookie']->id_customer;
             $guest->{$method}();
         }
